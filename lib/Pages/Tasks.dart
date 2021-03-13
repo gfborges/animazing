@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
 
-class Tasks extends StatelessWidget {
+
+import 'package:animazing/Pages/BasePage.dart';
+import 'package:flutter/cupertino.dart';
+
+class Tasks extends BasePage {
   final DateTime time;
 
   Tasks({Key key, @required this.time}) : super(key: key);
@@ -9,23 +12,15 @@ class Tasks extends StatelessWidget {
     return '${this.time.hour}:${this.time.minute}';
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Animazing'),
-        ),
-        body: Center(
+  Widget getBody() {
+    return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('TASKS ' + formatTime()),
             ],
           ),
-        ),
-        bottomNavigationBar: ,
-      ),
-    );
+        );
   }
+
 }

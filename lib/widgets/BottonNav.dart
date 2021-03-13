@@ -23,5 +23,5 @@ BottomNavigationBar Function() bottomNav = () {
               label: 'Vets'
             ),
           ],
-        )
-}
+        );
+};

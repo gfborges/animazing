@@ -17,7 +17,7 @@ abstract class BasePage extends StatelessWidget {
           title: Text('Animazing'),
         ),
         body: getBody(),
-        bottomNavigationBar: bottomNav(),
+        bottomNavigationBar: BottomNav(),
       ),
     );
   }

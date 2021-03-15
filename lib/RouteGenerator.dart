@@ -1,4 +1,5 @@
 
+import 'package:animazing/Pages/create_task.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,8 @@ class RouteGenerator {
       case '/tasks':
         final DateTime pageArgs =  args; 
         return MaterialPageRoute(builder: (_) => Tasks(time: pageArgs));
+      case '/create_task':
+        return MaterialPageRoute( builder: (_) =>  CreateTask());  
     }
   }
 }

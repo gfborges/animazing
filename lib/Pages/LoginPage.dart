@@ -17,8 +17,7 @@ class LoginPage extends StatelessWidget {
                     child: Text('LOGIN'),
                     onPressed: () {
                       Navigator.of(context).pushNamed(
-                        '/tasks',
-                        arguments: DateTime.now(),
+                        '/app',
                       );
                     })
               ],

@@ -1,36 +1,62 @@
+import 'package:animazing/Pages/CreatePet.dart';
+import 'package:animazing/Pages/SetBody.dart';
+import 'package:animazing/widgets/Tasks.dart';
 import 'package:flutter/material.dart';
 
 class BottomNav extends StatefulWidget {
+  SetBody page;
+  
+  BottomNav(this.page);
+
   @override
-  _BottomNavState createState() => _BottomNavState();
+  _BottomNavState createState() => _BottomNavState(this.page);
 }
 
 class _BottomNavState extends State<BottomNav> {
-  int _currentIndex = 0;
+  SetBody page;
 
-  final items = <BottomNavigationBarItem>[
-    BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'Home'),
-    BottomNavigationBarItem(icon: Icon(Icons.pets_rounded), label: 'Pets'),
-    BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Task'),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.account_balance_wallet_rounded), label: 'Wallet'),
-    BottomNavigationBarItem(icon: Icon(Icons.room), label: 'Vets'),
+  _BottomNavState(this.page);
+
+  int _currentIndex = 0;
+  final items = [
+    item(Icons.home_rounded, 'Home', TaskList()),
+    item(Icons.pets_rounded, 'Pets', CreatePet()),
+    item(Icons.add, 'Task', null),
+    item(Icons.account_balance_wallet_rounded, 'Wallet', TaskList()),
+    item(Icons.room, 'Vets', TaskList()),
   ];
-  void _onItemTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
+
+  static MenuItem item(IconData icon, String label, Widget page) {
+    return MenuItem(
+        BottomNavigationBarItem(icon: Icon(icon), label: label), page);
   }
+
+  _onItemTapped(BuildContext cSSontext) {
+    return (int index) {
+      setState(() {
+        _currentIndex = index;
+      });
+      page.setBody(items[index].page); 
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(child: BottomNavigationBar(
-      items: items,
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      currentIndex: _currentIndex,
-      selectedIconTheme: IconThemeData(color: Colors.redAccent[100]),
-      unselectedIconTheme: IconThemeData(color: Colors.black87),
-      onTap: _onItemTapped
-    ));
+    return Container(
+        child: BottomNavigationBar(
+            items: items.map((e) => e.item).toList(),
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            currentIndex: _currentIndex,
+            selectedIconTheme: IconThemeData(color: Colors.redAccent[100]),
+            unselectedIconTheme: IconThemeData(color: Colors.black87),
+            onTap: _onItemTapped(context)));
   }
+}
+
+class MenuItem {
+  final BottomNavigationBarItem item;
+  final Widget page;
+
+  MenuItem(this.item, this.page);
 }

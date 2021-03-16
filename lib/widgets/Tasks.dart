@@ -1,16 +1,8 @@
-import 'package:animazing/Pages/BasePage.dart';
 import 'package:animazing/widgets/Task.dart';
 import 'package:flutter/material.dart';
+class TaskList extends StatelessWidget {
 
-class Tasks extends BasePage {
-  final DateTime time;
-
-  Tasks({Key key, @required this.time}) : super(key: key);
-
-  String formatTime() {
-    return '${this.time.hour}:${this.time.minute}';
-  }
-
+  TaskList({Key key}) : super(key: key);
   Widget greatings() {
     return Center(
       child: Container(
@@ -55,7 +47,8 @@ class Tasks extends BasePage {
     );
   }
 
-  Widget getBody() {
+  @override
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
           child: Container(
         child: Column(

@@ -1,3 +1,4 @@
+import 'package:animazing/widgets/ScreenTitle.dart';
 import 'package:flutter/material.dart';
 
 class CreatePet extends StatefulWidget {
@@ -20,6 +21,8 @@ class _CreatePetState extends State<CreatePet> {
           key: _formKey,
           child: Column(
             children: <Widget>[
+              Center(child: ScreenTitle(text: 'Pets')), // Título da tela
+              Center(child: ScreenSubTitle(text: 'Adicione um pet a sua lista')), // Subtítulo
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(

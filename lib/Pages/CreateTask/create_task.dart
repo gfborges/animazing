@@ -1,3 +1,4 @@
+import 'package:animazing/widgets/ScreenTitle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 
@@ -67,6 +68,8 @@ class _CreateTaskState extends State<CreateTask> {
         key: _formKey,
         child: Column(
           children: <Widget>[
+            Center(child: ScreenTitle(text: 'Tarefas')), // Título da tela
+            Center(child: ScreenSubTitle(text: 'Agende uma tarefa para ser lembrado')), // Subtítulo
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
@@ -169,7 +172,6 @@ class _CreateTaskState extends State<CreateTask> {
                   }
                   return null;
                 },
-                keyboardType: TextInputType.datetime,
                 controller: dateCtl,
                 onTap: () {
                   selectDate(context);

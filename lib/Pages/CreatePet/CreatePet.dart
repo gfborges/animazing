@@ -16,10 +16,6 @@ class _CreatePetState extends State<CreatePet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(
-          vertical: 50.0,
-          horizontal: 10.0,
-        ),
         child: Form(
           key: _formKey,
           child: Column(

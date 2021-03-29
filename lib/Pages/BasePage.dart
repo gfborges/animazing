@@ -1,14 +1,15 @@
 import 'package:animazing/Pages/SetBody.dart';
 import 'package:animazing/widgets/BottonNav.dart';
 import 'package:animazing/widgets/Tasks.dart';
+import 'package:animazing/widgets/Background.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-class BasePage extends StatefulWidget {
+import 'package:animazing/colors.dart';
 
+class BasePage extends StatefulWidget {
   @override
   _BasePageState createState() => _BasePageState();
 }
-
 
 class _BasePageState extends State<BasePage> implements SetBody {
   Widget body = TaskList();
@@ -24,14 +25,13 @@ class _BasePageState extends State<BasePage> implements SetBody {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Animazing'),
+        body: SingleChildScrollView(child: Background(screen: body)),
+        // tem que fazer essa gambiarra pra mudar a cor zzz
+        bottomNavigationBar: new Theme(
+          data: Theme.of(context).copyWith(canvasColor: navbar_purple),
+          child: BottomNav(this),
         ),
-        body: body,
-        bottomNavigationBar: BottomNav(this),
       ),
     );
   }
-
-
 }

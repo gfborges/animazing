@@ -1,7 +1,7 @@
 import 'package:animazing/widgets/Task.dart';
 import 'package:flutter/material.dart';
-class TaskList extends StatelessWidget {
 
+class TaskList extends StatelessWidget {
   TaskList({Key key}) : super(key: key);
   Widget greatings() {
     return Center(
@@ -35,7 +35,6 @@ class TaskList extends StatelessWidget {
     );
 
     return Container(
-      padding: EdgeInsets.all(8),
       child: Column(
         children: <Widget>[
           taskOne,
@@ -49,15 +48,13 @@ class TaskList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-          child: Container(
-        child: Column(
-          children: [
-            greatings(),
-            image(),
-            taskList(),
-          ],
-        ),
+    return Container(
+      child: Column(
+        children: [
+          greatings(),
+          image(),
+          taskList(),
+        ],
       ),
     );
   }

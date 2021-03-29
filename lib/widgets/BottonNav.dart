@@ -1,7 +1,8 @@
-import 'package:animazing/Pages/CreatePet.dart';
 import 'package:animazing/Pages/MapPage.dart';
+import 'package:animazing/Pages/CreatePet/CreatePet.dart';
 import 'package:animazing/Pages/SetBody.dart';
-import 'package:animazing/Pages/create_task.dart';
+import 'package:animazing/Pages/Spending/SpendingPage.dart';
+import 'package:animazing/Pages/CreateTask/create_task.dart';
 import 'package:animazing/widgets/Tasks.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,7 @@ class _BottomNavState extends State<BottomNav> {
     item(Icons.home_rounded, 'Home', TaskList()),
     item(Icons.pets_rounded, 'Pets', CreatePet()),
     item(Icons.add, 'Task', CreateTask()),
-    item(Icons.account_balance_wallet_rounded, 'Wallet', TaskList()),
+    item(Icons.account_balance_wallet_rounded, 'Wallet', SpendingPage()),
     item(Icons.room, 'Vets', MapsPage()),
   ];
 
@@ -51,7 +52,7 @@ class _BottomNavState extends State<BottomNav> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         currentIndex: _currentIndex,
-        selectedIconTheme: IconThemeData(color: Colors.redAccent[100]),
+        selectedIconTheme: IconThemeData(color: Colors.white70),
         unselectedIconTheme: IconThemeData(color: Colors.black87),
         onTap: _onItemTapped(context)));
   }

@@ -25,7 +25,6 @@ class _BasePageState extends State<BasePage> implements SetBody {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-
         body: SingleChildScrollView(child: Background(screen: body)),
         // tem que fazer essa gambiarra pra mudar a cor zzz
         bottomNavigationBar: new Theme(

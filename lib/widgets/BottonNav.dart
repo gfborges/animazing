@@ -1,3 +1,4 @@
+import 'package:animazing/Pages/MapPage.dart';
 import 'package:animazing/Pages/CreatePet/CreatePet.dart';
 import 'package:animazing/Pages/SetBody.dart';
 import 'package:animazing/Pages/Spending/SpendingPage.dart';
@@ -25,7 +26,7 @@ class _BottomNavState extends State<BottomNav> {
     item(Icons.pets_rounded, 'Pets', CreatePet()),
     item(Icons.add, 'Task', CreateTask()),
     item(Icons.account_balance_wallet_rounded, 'Wallet', SpendingPage()),
-    item(Icons.room, 'Vets', TaskList()),
+    item(Icons.room, 'Vets', MapsPage()),
   ];
 
   static MenuItem item(IconData icon, String label, Widget page) {
@@ -45,14 +46,15 @@ class _BottomNavState extends State<BottomNav> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: BottomNavigationBar(
-            items: items.map((e) => e.item).toList(),
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            currentIndex: _currentIndex,
-            selectedIconTheme: IconThemeData(color: Colors.redAccent[100]),
-            unselectedIconTheme: IconThemeData(color: Colors.black87),
-            onTap: _onItemTapped(context)));
+      child: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: items.map((e) => e.item).toList(),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        currentIndex: _currentIndex,
+        selectedIconTheme: IconThemeData(color: Colors.white70),
+        unselectedIconTheme: IconThemeData(color: Colors.black87),
+        onTap: _onItemTapped(context)));
   }
 }
 

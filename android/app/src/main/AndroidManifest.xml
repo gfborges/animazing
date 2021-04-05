@@ -3,6 +3,10 @@
    <application
         android:label="animazing"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+          android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyB4UgVjHSSI9A-9U4qWMVHQ0zEUu-1oPRM"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

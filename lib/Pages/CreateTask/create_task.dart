@@ -70,6 +70,7 @@ class _CreateTaskState extends State<CreateTask> {
           children: <Widget>[
             Center(child: ScreenTitle(text: 'Tarefas')), // Título da tela
             Center(child: ScreenSubTitle(text: 'Agende uma tarefa para ser lembrado')), // Subtítulo
+            Center(child: Image.asset('images/notebook.png')),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
@@ -202,8 +203,9 @@ class _CreateTaskState extends State<CreateTask> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: FlatButton(
+                padding: EdgeInsets.symmetric(vertical: 17, horizontal: 60),
                 child: Text("Cadastrar"),
-                color: Colors.grey,
+                color: Color(0xffef8766),
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(20.0)),
                 onPressed: () {

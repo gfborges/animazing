@@ -1,13 +1,13 @@
 import 'package:animazing/Pages/MapPage.dart';
 import 'package:animazing/Pages/CreatePet/CreatePet.dart';
-import 'package:animazing/Pages/SetBody.dart';
+import 'package:animazing/Pages/BodySetter.dart';
 import 'package:animazing/Pages/CreateTask/create_task.dart';
 import 'package:animazing/Pages/TaskList.dart';
 import 'package:animazing/Pages/Spending/SpendingPage.dart';
 import 'package:flutter/material.dart';
 
 class BottomNav extends StatefulWidget {
-  SetBody page;
+  BodySetter page;
   
   BottomNav(this.page);
 
@@ -16,7 +16,7 @@ class BottomNav extends StatefulWidget {
 }
 
 class _BottomNavState extends State<BottomNav> {
-  SetBody page;
+  BodySetter page;
 
   _BottomNavState(this.page);
 

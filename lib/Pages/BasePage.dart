@@ -1,5 +1,5 @@
 import 'package:animazing/Models/User.dart';
-import 'package:animazing/Pages/SetBody.dart';
+import 'package:animazing/Pages/BodySetter.dart';
 import 'package:animazing/Pages/TaskList.dart';
 import 'package:animazing/widgets/BottonNav.dart';
 import 'package:animazing/widgets/Background.dart';
@@ -12,7 +12,7 @@ class BasePage extends StatefulWidget {
   _BasePageState createState() => _BasePageState();
 }
 
-class _BasePageState extends State<BasePage> implements SetBody {
+class _BasePageState extends State<BasePage> implements BodySetter {
   Widget body = TaskList();
   User currentUser;
 

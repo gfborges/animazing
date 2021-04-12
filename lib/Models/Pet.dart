@@ -4,5 +4,5 @@ class Pet {
   final String name;
   final Pets type;
 
-  Pet(this.name, this.type);
+  Pet({this.name, this.type});
 }

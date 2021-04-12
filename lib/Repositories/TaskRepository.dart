@@ -1,11 +1,27 @@
+import 'package:animazing/Models/Pet.dart';
+import 'package:animazing/Models/Pets.dart';
 import 'package:animazing/Models/Task.dart';
+import 'package:animazing/Models/TaskBuilder.dart';
 
 class TaskRepository {
   List<Task> _tasks;
   static TaskRepository _taskRepository;
 
   TaskRepository._() {
-    _tasks = <Task>[];
+    _tasks = <Task>[
+      TaskBuilder()
+        .setName("Task 1")
+        .setDateTime(DateTime.now())
+        .setCost(200)
+        .setPet(Pet(name:"Thor", type: Pets.bird))
+        .get(),
+      TaskBuilder()
+        .setName("Task 2")
+        .setDateTime(DateTime.now())
+        .setCost(220)
+        .setPet(Pet(name:"Thor", type: Pets.cat))
+        .get()
+    ];
   }
 
   static TaskRepository get() {

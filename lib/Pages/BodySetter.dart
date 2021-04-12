@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-abstract class SetBody {
+abstract class BodySetter {
   void setBody(Widget body);
 }

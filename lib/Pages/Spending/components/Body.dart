@@ -21,9 +21,9 @@ class Body extends StatelessWidget {
           Center(child: Image.asset('images/money.png')), // Imagem de dinheiro
           MonthChanger(
             spendingList: SpendingList(list: [
-              SpendingCardInfo(Pet("King Kong", Pets.cat), DateTime(2021), 1000.05),
-              SpendingCardInfo(Pet("Rex", Pets.dog), DateTime(2021), 350.15),
-              SpendingCardInfo(Pet("Galileu", Pets.bird), DateTime(2021), 80.35),
+              SpendingCardInfo(Pet(name:"King Kong", type:Pets.cat), DateTime(2021), 1000.05),
+              SpendingCardInfo(Pet(name:"Rex",type: Pets.dog), DateTime(2021), 350.15),
+              SpendingCardInfo(Pet(name:"Galileu",type: Pets.bird), DateTime(2021), 80.35),
             ]),
           )
         ],

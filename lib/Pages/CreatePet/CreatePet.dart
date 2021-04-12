@@ -1,3 +1,4 @@
+import 'package:animazing/widgets/ScreenTitle.dart';
 import 'package:flutter/material.dart';
 
 class CreatePet extends StatefulWidget {
@@ -16,14 +17,13 @@ class _CreatePetState extends State<CreatePet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(
-          vertical: 50.0,
-          horizontal: 10.0,
-        ),
         child: Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
+              Center(child: ScreenTitle(text: 'Pets')), // Título da tela
+              Center(child: ScreenSubTitle(text: 'Adicione um pet a sua lista')), // Subtítulo
+              Center(child: Image.asset('images/sleeping_cat.png')),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -86,8 +86,9 @@ class _CreatePetState extends State<CreatePet> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: FlatButton(
-                  child: Text("Cadastrar"),
-                  color: Colors.grey,
+                  padding: EdgeInsets.symmetric(vertical: 17, horizontal: 60),
+                  child: Text("Cadastrar", style: TextStyle(color: Colors.white)),
+                  color: Color(0xff4a4356),
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(20.0)),
                   onPressed: () {

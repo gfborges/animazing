@@ -3,7 +3,7 @@ import 'package:animazing/Pages/BasePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'Pages/LoginPage.dart';
+import 'Pages/Login/LoginPage.dart';
 
 class RouteGenerator {
   static Route<dynamic> generate(RouteSettings settings) {
@@ -14,8 +14,7 @@ class RouteGenerator {
       case '/login':
         return MaterialPageRoute( builder: (_) =>  LoginPage());
       case '/app':
-        
-        return MaterialPageRoute( builder: (_) =>  BasePage(args));  
+        return MaterialPageRoute( builder: (_) =>  BasePage());  
     }
   }
 }

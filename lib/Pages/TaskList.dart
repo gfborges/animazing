@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class TaskList extends StatelessWidget {
   final TaskService taskService = TaskService(); 
-
+  
   TaskList({Key key}) : super(key: key);
 
   Widget greatings() {
@@ -31,7 +31,6 @@ class TaskList extends StatelessWidget {
     List<Widget> widgets = tasks.map((task) => TaskCard(task: task,)).toList();
 
     return Container(
-      padding: EdgeInsets.all(8),
       child: Column(
         children: widgets
       ),
@@ -40,15 +39,13 @@ class TaskList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-          child: Container(
-        child: Column(
-          children: [
-            greatings(),
-            image(),
-            taskList(),
-          ],
-        ),
+    return Container(
+      child: Column(
+        children: [
+          greatings(),
+          image(),
+          taskList(),
+        ],
       ),
     );
   }

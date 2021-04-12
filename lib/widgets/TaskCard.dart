@@ -1,28 +1,25 @@
+import 'package:animazing/Models/Task.dart';
 import 'package:flutter/material.dart';
 
-class Task extends StatefulWidget {
-  final String name;
-  final String petName;
+class TaskCard extends StatefulWidget {
+  final Task task;
 
-  Task({Key key, this.name, this.petName});
+  TaskCard({Key key, this.task});
 
   @override
-  _TaskState createState() =>
-      _TaskState(name: this.name, petName: this.petName);
+  _TaskCardState createState() =>
+      _TaskCardState(task: this.task);
 }
 
-class _TaskState extends State<Task> {
-  final String name;
-  final String petName;
-  bool isComplete = false;
-
+class _TaskCardState extends State<TaskCard> {
+  final Task task;
   final Color _color = Colors.amber[600];
 
-  _TaskState({@required this.name, @required this.petName, bool isComplete});
+  _TaskCardState({ this.task });
 
   void _onTap() {
     setState(() {
-      isComplete = !isComplete;
+      task.toggle();
     });
   }
 
@@ -62,7 +59,7 @@ class _TaskState extends State<Task> {
   }
 
   Widget checkbox() {
-    if (isComplete) {
+    if (task.isComplete) {
       return Icon(Icons.check_circle);
     }
     return Icon(Icons.radio_button_unchecked);
@@ -73,8 +70,8 @@ class _TaskState extends State<Task> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(name),
-        Text(petName),
+        Text(task.name),
+        Text(task.pet.name),
       ],
     );
   }

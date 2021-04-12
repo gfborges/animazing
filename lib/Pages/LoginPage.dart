@@ -1,6 +1,10 @@
+import 'package:animazing/Models/User.dart';
+import 'package:animazing/Services/UserService.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
+  final UserService userService = UserService();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,9 +20,8 @@ class LoginPage extends StatelessWidget {
                 ElevatedButton(
                     child: Text('LOGIN'),
                     onPressed: () {
-                      Navigator.of(context).pushNamed(
-                        '/app',
-                      );
+                      User user = userService.getOne("test-user");
+                      Navigator.of(context).pushNamed('/app', arguments: user);
                     })
               ],
             ),

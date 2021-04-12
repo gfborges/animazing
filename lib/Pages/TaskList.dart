@@ -1,8 +1,14 @@
-import 'package:animazing/widgets/Task.dart';
+import 'package:animazing/Models/Task.dart';
+import 'package:animazing/Services/TaskService.dart';
+import 'package:animazing/widgets/TaskCard.dart';
 import 'package:flutter/material.dart';
+
+
 class TaskList extends StatelessWidget {
+  final TaskService taskService = TaskService(); 
 
   TaskList({Key key}) : super(key: key);
+
   Widget greatings() {
     return Center(
       child: Container(
@@ -21,28 +27,13 @@ class TaskList extends StatelessWidget {
   }
 
   Widget taskList() {
-    Widget taskOne = Task(
-      name: 'Task 1',
-      petName: 'Alaska',
-    );
-    Widget taskTwo = Task(
-      name: 'Task 2',
-      petName: 'Nico',
-    );
-    Widget taskThree = Task(
-      name: 'Task 3',
-      petName: 'Thor',
-    );
+    List<Task> tasks = taskService.getAll();
+    List<Widget> widgets = tasks.map((task) => TaskCard(task: task,)).toList();
 
     return Container(
       padding: EdgeInsets.all(8),
       child: Column(
-        children: <Widget>[
-          taskOne,
-          taskTwo,
-          taskThree,
-          taskOne,
-        ],
+        children: widgets
       ),
     );
   }

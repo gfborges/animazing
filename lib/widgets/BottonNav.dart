@@ -1,7 +1,7 @@
 import 'package:animazing/Pages/CreatePet.dart';
 import 'package:animazing/Pages/SetBody.dart';
 import 'package:animazing/Pages/create_task.dart';
-import 'package:animazing/widgets/Tasks.dart';
+import 'package:animazing/Pages/TaskList.dart';
 import 'package:flutter/material.dart';
 
 class BottomNav extends StatefulWidget {

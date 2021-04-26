@@ -1,5 +1,5 @@
 import 'package:animazing/Models/TaskBuilder.dart';
-import 'package:animazing/Pages/CreateTask/Frequency.dart';
+import 'package:animazing/Models/Frequency.dart';
 import 'package:animazing/widgets/ScreenTitle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';

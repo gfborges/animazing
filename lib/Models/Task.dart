@@ -1,3 +1,4 @@
+import 'package:animazing/Models/Frequency.dart';
 import 'package:animazing/Models/Pet.dart';
 
 import 'package:intl/intl.dart';
@@ -7,6 +8,7 @@ class Task {
   double cost; 
   Pet pet;
   DateTime time;
+  Frequency frequency;
 
   static final DateFormat _formatter = DateFormat('HH:mm');
 

@@ -1,3 +1,4 @@
+import 'package:animazing/Models/Frequency.dart';
 import 'package:animazing/Models/Pet.dart';
 import 'package:animazing/Models/Task.dart';
 
@@ -33,6 +34,11 @@ class TaskBuilder {
     return this;
   }
 
+  TaskBuilder setFrequency(Frequency frequency) {
+    this._task.frequency = frequency;
+    return this;
+  }
+  
   Task get() {
     Task task = this._task;
     _reset();

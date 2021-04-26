@@ -9,6 +9,19 @@ class TaskList extends StatelessWidget {
   
   TaskList({Key key}) : super(key: key);
 
+    @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          greatings(),
+          image(),
+          taskList(),
+        ],
+      ),
+    );
+  }
+  
   Widget greatings() {
     return Center(
       child: Container(
@@ -33,19 +46,6 @@ class TaskList extends StatelessWidget {
     return Container(
       child: Column(
         children: widgets
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          greatings(),
-          image(),
-          taskList(),
-        ],
       ),
     );
   }

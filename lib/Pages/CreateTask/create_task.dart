@@ -1,3 +1,5 @@
+import 'package:animazing/Models/TaskBuilder.dart';
+import 'package:animazing/Pages/CreateTask/Frequency.dart';
 import 'package:animazing/widgets/ScreenTitle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
@@ -20,9 +22,10 @@ class _CreateTaskState extends State<CreateTask> {
   DateTime date = DateTime.now();
 
   String valueChoose;
-  List listItem = ["Não repete", "Todos os dias", "Semanal", "Mensal", "Anual"];
+  List frequencies = Frequency.values.map((e) => e.toLabel()).toList();
   String petChoose;
   List listItemPet = ["Galileu", "King Kong", "Rex"];
+  TaskBuilder taskBuilder = new TaskBuilder();
 
   //Time picker
   void initState() {
@@ -88,6 +91,7 @@ class _CreateTaskState extends State<CreateTask> {
                   underline: SizedBox(),
                   onChanged: (newValue) {
                     setState(() {
+                      taskBuilder.setPet(null);
                       petChoose = newValue;
                     });
                   },
@@ -112,11 +116,15 @@ class _CreateTaskState extends State<CreateTask> {
                 decoration: InputDecoration(
                     labelText: 'Título da tarefa',
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0))),
+                        borderRadius: BorderRadius.circular(20.0)),
+                ),
+                onChanged:(String title) => {
+                  taskBuilder.setName(title)
+                },
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0), 
               child: TextFormField(
                 validator: (String value) {
                   if (value.isEmpty) {
@@ -155,7 +163,7 @@ class _CreateTaskState extends State<CreateTask> {
                       valueChoose = newValue;
                     });
                   },
-                  items: listItem.map((valueItem) {
+                  items: frequencies.map((valueItem) {
                     return DropdownMenuItem(
                       value: valueItem,
                       child: Text(valueItem),

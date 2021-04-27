@@ -1,8 +1,9 @@
 import 'package:animazing/Models/Pets.dart';
 
 class Pet {
-  final String name;
-  final Pets type;
+  String name;
+  Pets type;
+  String origin;
 
-  Pet({ this.name, this.type});
+  Pet({ this.name, this.type, this.origin});
 }

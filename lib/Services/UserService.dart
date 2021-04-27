@@ -5,8 +5,15 @@ import 'package:animazing/Repositories/UserRepository.dart';
 
 class UserService {
   final UserRepository userRepository = UserRepository.get();
+  static UserService userService;
+  static UserService get() {
+    if(UserService.userService == null) {
+      UserService.userService = UserService();
+    }
+    return userService;
+  }
+
   User currentUser;
-  UserService();
 
   User getOne(String name) {
     return currentUser != null ? currentUser : currentUser = mockOne();

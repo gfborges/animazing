@@ -1,20 +1,23 @@
-import 'package:animazing/Models/User.dart';
 import 'package:animazing/Pages/BodySetter.dart';
 import 'package:animazing/Pages/TaskList.dart';
 import 'package:animazing/widgets/BottonNav.dart';
 import 'package:animazing/widgets/Background.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animazing/colors.dart';
 
 class BasePage extends StatefulWidget {
+  final User user;
+ 
+  BasePage({this.user});
+
   @override
   _BasePageState createState() => _BasePageState();
 }
 
 class _BasePageState extends State<BasePage> implements BodySetter {
-  Widget body = TaskList();
-  User currentUser;
+  Widget body;
 
   _BasePageState();
   
@@ -27,7 +30,7 @@ class _BasePageState extends State<BasePage> implements BodySetter {
 
   @override
   Widget build(BuildContext context) {
-    currentUser = ModalRoute.of(context).settings.arguments as User;
+    body = TaskList(user: widget.user);
 
     return Container(
       child: Scaffold(

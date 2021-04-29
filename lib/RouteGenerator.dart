@@ -1,5 +1,6 @@
 
 import 'package:animazing/Pages/BasePage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class RouteGenerator {
       case '/login':
         return MaterialPageRoute( builder: (_) =>  LoginPage());
       case '/app':
-        return MaterialPageRoute( builder: (_) =>  BasePage());  
+        return MaterialPageRoute( builder: (_) =>  BasePage(user: args as User));  
     }
   }
 }

@@ -26,10 +26,12 @@ class ScreenSubTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       this.text,
+      textAlign: TextAlign.center,
       style: TextStyle(
-          fontSize: 18,
-          color: subtitle_color,
-          fontWeight: FontWeight.values[5]),
+        fontSize: 18,
+        color: subtitle_color,
+        fontWeight: FontWeight.values[5],
+      ),
     );
   }
 }

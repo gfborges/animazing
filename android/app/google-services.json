@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "531932988696",
+    "project_id": "animazing-1152d",
+    "storage_bucket": "animazing-1152d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531932988696:android:245ee1d4e977d53b1c4a6d",
+        "android_client_info": {
+          "package_name": "br.com.fatec.animazing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531932988696-2a11n54c7ntfp91tnm4fc5fgfseetbds.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo6iC2nz9ifPd1S19JA9hqceXMkSPNYQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531932988696-2a11n54c7ntfp91tnm4fc5fgfseetbds.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

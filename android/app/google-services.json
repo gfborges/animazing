@@ -1,33 +1,70 @@
 {
   "project_info": {
-    "project_number": "531932988696",
-    "project_id": "animazing-1152d",
-    "storage_bucket": "animazing-1152d.appspot.com"
+    "project_number": "979098826306",
+    "project_id": "animazing",
+    "storage_bucket": "animazing.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:531932988696:android:245ee1d4e977d53b1c4a6d",
+        "mobilesdk_app_id": "1:979098826306:android:9c87033ec757ea069edfdb",
         "android_client_info": {
           "package_name": "br.com.fatec.animazing"
         }
       },
       "oauth_client": [
         {
-          "client_id": "531932988696-2a11n54c7ntfp91tnm4fc5fgfseetbds.apps.googleusercontent.com",
+          "client_id": "979098826306-4r8ov48t9eihf1kf0jt69go9ero52idl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBo6iC2nz9ifPd1S19JA9hqceXMkSPNYQE"
+          "current_key": "AIzaSyCArzLVZJPV4vsWDI0ki4few25FfApFADI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "531932988696-2a11n54c7ntfp91tnm4fc5fgfseetbds.apps.googleusercontent.com",
+              "client_id": "979098826306-4r8ov48t9eihf1kf0jt69go9ero52idl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979098826306:android:7617f56db5056e449edfdb",
+        "android_client_info": {
+          "package_name": "br.com.fatec.teste.animazing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979098826306-l835b7mebvt1v85lavfeqhu1mrin8rlu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.fatec.teste.animazing",
+            "certificate_hash": "9e67d0edf0ea0649fae51edfd09881a93377daa5"
+          }
+        },
+        {
+          "client_id": "979098826306-4r8ov48t9eihf1kf0jt69go9ero52idl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCArzLVZJPV4vsWDI0ki4few25FfApFADI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979098826306-4r8ov48t9eihf1kf0jt69go9ero52idl.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

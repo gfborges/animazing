@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_maps_flutter: ^0.5.25+1
+  location: ^3.0.2
   intl: ^0.17.0
 
 

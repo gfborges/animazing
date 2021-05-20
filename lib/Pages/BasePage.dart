@@ -1,25 +1,26 @@
+import 'package:animazing/Models/Owner.dart';
 import 'package:animazing/Pages/BodySetter.dart';
 import 'package:animazing/Pages/TaskList.dart';
 import 'package:animazing/widgets/BottonNav.dart';
 import 'package:animazing/widgets/Background.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animazing/colors.dart';
 
 class BasePage extends StatefulWidget {
-  final User user;
+  final Owner owner;
  
-  BasePage({this.user});
+  BasePage({this.owner});
 
   @override
-  _BasePageState createState() => _BasePageState();
+  _BasePageState createState() => _BasePageState(owner);
 }
 
 class _BasePageState extends State<BasePage> implements BodySetter {
   Widget body;
+  Owner owner;
 
-  _BasePageState();
+  _BasePageState(this.owner);
   
   @override
   void setBody(Widget body) {
@@ -30,8 +31,8 @@ class _BasePageState extends State<BasePage> implements BodySetter {
 
   @override
   Widget build(BuildContext context) {
-    body = TaskList(user: widget.user);
-
+    body = TaskList(owner: owner);
+    print("aqui ->" + owner.email);
     return Container(
       child: Scaffold(
         body: SingleChildScrollView(child: Background(screen: body)),

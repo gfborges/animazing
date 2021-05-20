@@ -1,4 +1,3 @@
-import 'package:animazing/Models/User.dart';
 import 'package:animazing/Pages/Login/components/Authentication.dart';
 import 'package:animazing/Pages/Login/components/SignInWithGoogleButton.dart';
 import 'package:animazing/Pages/Login/components/CreateAccountButton.dart';
@@ -7,7 +6,7 @@ import 'package:animazing/widgets/ScreenTitle.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-  final UserService userService = UserService();
+  final OwnerService userService = OwnerService();
 
   @override
   Widget build(BuildContext context) {

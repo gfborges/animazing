@@ -6,25 +6,27 @@ import 'package:animazing/Services/UserService.dart';
 
 class TaskRepository {
   List<Task> _tasks;
-  UserService userService = UserService.get();
+  OwnerService userService = OwnerService.get();
   static TaskRepository _taskRepository;
 
   TaskRepository._() {
     List<Pet> pets = userService.currentUser.pets;
+    Pet pet = Pet(name: "Thor", type: Pets.bird, origin: "adopted");
     _tasks = <Task>[
       TaskBuilder()
         .setName("Task 1")
         .setDateTime(DateTime.now())
         .setCost(200)
-        .setPet(pets.firstWhere( (p) => p.name == "Thor"))
+        .setPet(pet)
         .get(),
       TaskBuilder()
         .setName("Task 2")
         .setDateTime(DateTime.now())
         .setCost(220)
-        .setPet(pets.firstWhere( (p) => p.name == "Nico"))
+        .setPet(pet)
         .get()
     ];
+    print("");
   }
 
   static TaskRepository get() {

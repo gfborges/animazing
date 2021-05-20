@@ -1,7 +1,7 @@
 import 'package:animazing/Models/Owner.dart';
 import 'package:animazing/Pages/Login/components/Authentication.dart';
-import 'package:animazing/Repositories/TaskRepository.dart';
 import 'package:animazing/Services/UserService.dart';
+import 'package:animazing/Store/Store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +18,8 @@ class SignInWithGoogleButton extends StatelessWidget {
           if (user != null) {
             print(user.displayName);
             var owner = Owner.create(user);
-            ownerService.currentUser = owner;
-            Navigator.of(context).pushNamed('/app', arguments: Owner.create(user));
+            Store.memory["currentOwner"] = owner;
+            Navigator.of(context).pushNamed('/app');
           }
         },
         style: ButtonStyle(

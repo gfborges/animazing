@@ -1,5 +1,3 @@
-
-import 'package:animazing/Models/Owner.dart';
 import 'package:animazing/Pages/BasePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +13,7 @@ class RouteGenerator {
       case '/login':
         return MaterialPageRoute( builder: (_) =>  LoginPage());
       case '/app':
-        return MaterialPageRoute( builder: (_) =>  BasePage(owner: args as Owner));  
+        return MaterialPageRoute( builder: (_) =>  BasePage());  
     }
   }
 }

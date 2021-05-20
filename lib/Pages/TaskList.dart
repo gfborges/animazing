@@ -1,15 +1,18 @@
 import 'package:animazing/Models/Owner.dart';
 import 'package:animazing/Models/Task.dart';
 import 'package:animazing/Services/TaskService.dart';
+import 'package:animazing/Store/Store.dart';
 import 'package:animazing/widgets/ScreenTitle.dart';
 import 'package:animazing/widgets/TaskCard.dart';
 import 'package:flutter/material.dart';
 
 class TaskList extends StatelessWidget {
   final TaskService taskService = TaskService();
-  final Owner owner;
+  Owner owner;
 
-  TaskList({Key key, this.owner}) : super(key: key);
+  TaskList({Key key}) {
+    this.owner = Store.memory["currentOwner"];
+  }
 
   @override
   Widget build(BuildContext context) {

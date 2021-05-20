@@ -8,19 +8,19 @@ import 'package:flutter/material.dart';
 import 'package:animazing/colors.dart';
 
 class BasePage extends StatefulWidget {
-  final Owner owner;
  
-  BasePage({this.owner});
+  BasePage();
 
   @override
-  _BasePageState createState() => _BasePageState(owner);
+  _BasePageState createState() => _BasePageState();
 }
 
 class _BasePageState extends State<BasePage> implements BodySetter {
   Widget body;
-  Owner owner;
 
-  _BasePageState(this.owner);
+  _BasePageState() {
+    this.body = TaskList();
+  }
   
   @override
   void setBody(Widget body) {
@@ -31,8 +31,6 @@ class _BasePageState extends State<BasePage> implements BodySetter {
 
   @override
   Widget build(BuildContext context) {
-    body = TaskList(owner: owner);
-    print("aqui ->" + owner.email);
     return Container(
       child: Scaffold(
         body: SingleChildScrollView(child: Background(screen: body)),

@@ -34,10 +34,16 @@ class TaskBuilder {
     return this;
   }
 
-  TaskBuilder setFrequency(Frequency frequency) {
+  TaskBuilder setFrequency(String frequency) {
     this._task.frequency = frequency;
     return this;
   }
+
+  TaskBuilder setOwner(String ownerId) {
+    this._task.ownerId = ownerId;
+    return this;
+  }
+  
   
   Task get() {
     Task task = this._task;

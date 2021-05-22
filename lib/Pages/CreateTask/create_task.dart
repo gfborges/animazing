@@ -1,5 +1,8 @@
+import 'package:animazing/Models/Owner.dart';
 import 'package:animazing/Models/TaskBuilder.dart';
 import 'package:animazing/Models/Frequency.dart';
+import 'package:animazing/Services/TaskService.dart';
+import 'package:animazing/Store/Store.dart';
 import 'package:animazing/widgets/ScreenTitle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
@@ -13,19 +16,20 @@ class CreateTask extends StatefulWidget {
 // TODO: fazer a tela ficar responsiva 
 class _CreateTaskState extends State<CreateTask> {
   final _formKey = GlobalKey<FormState>();
+  final TaskBuilder taskBuilder = TaskBuilder();
   TextEditingController timeCtl = TextEditingController();
   TextEditingController dateCtl = TextEditingController();
   var moneyController = new MoneyMaskedTextController(leftSymbol: 'R\$ ');
-
   TimeOfDay time;
   TimeOfDay picked;
   DateTime date = DateTime.now();
+  Owner currentOwner;
+  TaskService taskService;
 
-  String valueChoose;
+  String chosenFreq;
   List frequencies = Frequency.values.map((e) => e.toLabel()).toList();
   String petChoose;
   List listItemPet = ["Galileu", "King Kong", "Rex"];
-  TaskBuilder taskBuilder = new TaskBuilder();
 
   //Time picker
   void initState() {
@@ -33,12 +37,18 @@ class _CreateTaskState extends State<CreateTask> {
     time = TimeOfDay.now();
   }
 
-  Future<Null> selectTime(BuildContext) async {
+  _CreateTaskState() {
+    this.currentOwner = Store.memory["currentOwner"];
+    this.taskService = TaskService();
+  }
+
+  Future<Null> selectTime(BuildContext context) async {
     picked = await showTimePicker(context: context, initialTime: time);
 
     if (picked != null) {
       setState(() {
         time = picked;
+        taskBuilder.setDateTime(time.format(context));
         timeCtl.text = time.format(context);
       });
     }
@@ -89,10 +99,10 @@ class _CreateTaskState extends State<CreateTask> {
                   icon: Icon(Icons.arrow_drop_down_circle),
                   isExpanded: true,
                   underline: SizedBox(),
-                  onChanged: (newValue) {
+                  onChanged: (newPet) {
                     setState(() {
-                      taskBuilder.setPet(null);
-                      petChoose = newValue;
+                      taskBuilder.setPet(newPet);
+                      petChoose = newPet;
                     });
                   },
                   items: listItemPet.map((valueItem) {
@@ -118,8 +128,9 @@ class _CreateTaskState extends State<CreateTask> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0)),
                 ),
-                onChanged:(String title) => {
-                  taskBuilder.setName(title)
+                onChanged:(String title) {
+                  taskBuilder.setName(title);
+                  print(title);
                 },
               ),
             ),
@@ -154,13 +165,14 @@ class _CreateTaskState extends State<CreateTask> {
                 ),
                 child: DropdownButton(
                   hint: Text('Frequência'),
-                  value: valueChoose,
+                  value: chosenFreq,
                   icon: Icon(Icons.arrow_drop_down_circle),
                   isExpanded: true,
                   underline: SizedBox(),
-                  onChanged: (newValue) {
+                  onChanged: (newFreq) {
                     setState(() {
-                      valueChoose = newValue;
+                      taskBuilder.setFrequency(newFreq);
+                      chosenFreq = newFreq;
                     });
                   },
                   items: frequencies.map((valueItem) {
@@ -201,6 +213,10 @@ class _CreateTaskState extends State<CreateTask> {
                   }
                   return null;
                 },
+                onChanged: (String value) {
+                  print(moneyController.numberValue);
+                  taskBuilder.setCost(moneyController.numberValue);
+                },
                 controller: moneyController,
                 decoration: InputDecoration(
                     labelText: 'Gasto',
@@ -218,6 +234,7 @@ class _CreateTaskState extends State<CreateTask> {
                     borderRadius: new BorderRadius.circular(20.0)),
                 onPressed: () {
                   _formKey.currentState.validate();
+                  taskService.save(taskBuilder.get());
                 },
               ),
             ),

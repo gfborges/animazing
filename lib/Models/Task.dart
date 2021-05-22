@@ -1,5 +1,3 @@
-import 'package:animazing/Models/Frequency.dart';
-import 'package:animazing/Models/Pet.dart';
 import 'package:animazing/Models/TaskBuilder.dart';
 
 import 'package:intl/intl.dart';
@@ -8,12 +6,11 @@ class Task {
   static TaskBuilder taskBuilder = TaskBuilder();
   String name;
   double cost;
-  Pet pet;
-  DateTime time;
+  String pet;
+  String time;
   String frequency;
   String ownerId;
 
-  static final DateFormat _formatter = DateFormat('HH:mm');
 
   bool isComplete = false;
 
@@ -24,7 +21,7 @@ class Task {
   }
 
   String formatedTime() {
-    return _formatter.format(this.time);
+    return time;
   }
 
   static fromJson(Map<String, Object> json) {

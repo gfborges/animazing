@@ -71,7 +71,7 @@ class _TaskCardState extends State<TaskCard> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(task.name),
-        Text(task.pet.name),
+        Text(task.pet),
       ],
     );
   }

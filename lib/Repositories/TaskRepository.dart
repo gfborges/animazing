@@ -33,17 +33,13 @@ class TaskRepository {
       .catchError((error) => print("Failed to add user: $error"));
   }
 
-  Future<List<Task>> getMany(Owner owner) {
+  Stream<QuerySnapshot<Task>> getMany(Owner owner) {
     return collection
       .where("ownerId", isEqualTo: owner.id)
-      .getDocuments()
-      .then((snapshot) {
-        return snapshot.documents;
-      });
-
+      .snapshots();
   }
 
   bool hasTask(String name) {
-    return _tasks.any((task) => task.name == name);
+    return false;
   }
 }

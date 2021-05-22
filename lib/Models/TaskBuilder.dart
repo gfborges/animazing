@@ -1,5 +1,3 @@
-import 'package:animazing/Models/Frequency.dart';
-import 'package:animazing/Models/Pet.dart';
 import 'package:animazing/Models/Task.dart';
 
 class TaskBuilder {
@@ -24,12 +22,12 @@ class TaskBuilder {
     return this;
   }
 
-  TaskBuilder setPet(Pet pet) {
+  TaskBuilder setPet(String pet) {
     this._task.pet = pet;
     return this;
   }
 
-  TaskBuilder setDateTime(DateTime time) {
+  TaskBuilder setDateTime(String time) {
     this._task.time = time;
     return this;
   }

@@ -1,3 +1,4 @@
+import 'package:animazing/Models/Owner.dart';
 import 'package:animazing/Models/Task.dart';
 import 'package:animazing/Repositories/TaskRepository.dart';
 
@@ -8,7 +9,11 @@ class TaskService {
     taskRepository = TaskRepository.get(); 
   }
 
-  List<Task> getAll() {
-    return taskRepository.getMany();
+  getAll(Owner owner) {
+    return taskRepository.getMany(owner);
+  }
+
+  save(Task task) {
+    return taskRepository.save(task);
   }
 }

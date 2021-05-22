@@ -4,6 +4,7 @@ import 'package:animazing/Services/TaskService.dart';
 import 'package:animazing/Store/Store.dart';
 import 'package:animazing/widgets/ScreenTitle.dart';
 import 'package:animazing/widgets/TaskCard.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class TaskList extends StatelessWidget {
@@ -54,15 +55,19 @@ class TaskList extends StatelessWidget {
   }
 
   Widget taskList() {
-    List<Task> tasks = taskService.getAll();
-    List<Widget> widgets = tasks
-        .map((task) => TaskCard(
-              task: task,
-            ))
-        .toList();
+    Stream<QuerySnapshot<Task>> _tasks = taskService.getAll(owner);
 
     return Container(
-      child: Column(children: widgets),
+      child: StreamBuilder<QuerySnapshot<Task>>(
+        stream: _tasks,
+        builder: (BuildContext context, snapshot) {
+          final data = snapshot.requireData;
+          List<TaskCard> tasks = data.docs.map((doc) => TaskCard(task:doc.data())).toList();
+          return Column(
+            children: tasks,
+          );
+        },
+      ),
     );
   }
 }

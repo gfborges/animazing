@@ -7,15 +7,14 @@ class TaskCard extends StatefulWidget {
   TaskCard({Key key, this.task});
 
   @override
-  _TaskCardState createState() =>
-      _TaskCardState(task: this.task);
+  _TaskCardState createState() => _TaskCardState(task: this.task);
 }
 
 class _TaskCardState extends State<TaskCard> {
   final Task task;
-  final Color _color = Colors.amber[600];
+  final Color _color = Colors.white;
 
-  _TaskCardState({ this.task });
+  _TaskCardState({this.task});
 
   void _onTap() {
     setState(() {
@@ -29,8 +28,8 @@ class _TaskCardState extends State<TaskCard> {
       onTap: _onTap,
       child: Container(
         child: buildCard(),
-        height: 100,
-        margin: EdgeInsets.only(top: 5, bottom: 5),
+        height: 70,
+        margin: EdgeInsets.only(top: 6, bottom: 6),
         decoration: BoxDecoration(
           color: _color,
           border: Border.all(color: _color),
@@ -48,7 +47,10 @@ class _TaskCardState extends State<TaskCard> {
         children: [
           Row(
             children: [
-              checkbox(),
+              Padding(
+                padding: EdgeInsets.only(right: 10),
+                child: checkbox(),
+              ),
               info(),
             ],
           ),
@@ -62,7 +64,7 @@ class _TaskCardState extends State<TaskCard> {
     if (task.isComplete) {
       return Icon(Icons.check_circle);
     }
-    return Icon(Icons.radio_button_unchecked);
+    return Icon(Icons.radio_button_unchecked, color: Colors.grey);
   }
 
   Widget info() {
@@ -70,7 +72,10 @@ class _TaskCardState extends State<TaskCard> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(task.name),
+        Text(
+          task.name,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
         Text(task.pet),
       ],
     );
@@ -81,8 +86,8 @@ class _TaskCardState extends State<TaskCard> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(Icons.watch_later_rounded),
-        Text('09:10'),
+        Icon(Icons.watch_later_outlined),
+        Text(task.time),
       ],
     );
   }

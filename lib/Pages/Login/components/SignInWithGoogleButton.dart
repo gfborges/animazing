@@ -1,8 +1,5 @@
-import 'package:animazing/Models/Owner.dart';
 import 'package:animazing/Pages/Login/components/Authentication.dart';
-import 'package:animazing/Services/UserService.dart';
-import 'package:animazing/Store/Store.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:animazing/Services/OwnerService.dart';
 import 'package:flutter/material.dart';
 
 class SignInWithGoogleButton extends StatelessWidget {
@@ -14,13 +11,11 @@ class SignInWithGoogleButton extends StatelessWidget {
       margin: EdgeInsets.all(5),
       child: OutlinedButton(
         onPressed: () async {
-          User user = await Authentication.signInWithGoogle(context: context);
-          if (user != null) {
-            print(user.displayName);
-            var owner = Owner.create(user);
-            Store.memory["currentOwner"] = owner;
+          bool ok = await Authentication.authenticate(context: context);
+          if (ok)
             Navigator.of(context).pushNamed('/app');
-          }
+          else
+            print("Erro ao autenticar usuário!");
         },
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(Color(0xff837676)),

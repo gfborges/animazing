@@ -1,3 +1,6 @@
+import 'package:animazing/Models/Owner.dart';
+import 'package:animazing/Services/OwnerService.dart';
+import 'package:animazing/Store/Store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +13,20 @@ class Authentication {
     return firebaseApp;
   }
 
-  static Future<User> signInWithGoogle({BuildContext context}) async {
+  static Future<bool> authenticate({BuildContext context}) async {
+    var firebaseUser = await _signInWithGoogle(context: context);
+    if(firebaseUser != null) {
+      var owner = Owner.create(firebaseUser);
+      await OwnerService.get().save(owner);
+      Store.memory["currentOwner"] = owner;
+
+      return true;
+    }
+
+    return false;
+  }
+
+  static Future<User> _signInWithGoogle({BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User user;
 

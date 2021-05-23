@@ -1,6 +1,6 @@
 import 'package:animazing/Models/Owner.dart';
 import 'package:animazing/Models/Task.dart';
-import 'package:animazing/Services/UserService.dart';
+import 'package:animazing/Services/OwnerService.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TaskRepository {

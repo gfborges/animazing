@@ -61,8 +61,12 @@ class TaskList extends StatelessWidget {
       child: StreamBuilder<QuerySnapshot<Task>>(
         stream: _tasks,
         builder: (BuildContext context, snapshot) {
-          final data = snapshot.requireData;
-          List<TaskCard> tasks = data.docs.map((doc) => TaskCard(task:doc.data())).toList();
+          List<TaskCard> tasks = [];
+          if (snapshot.hasData) {
+            final data = snapshot.requireData;
+            tasks = data.docs.map((doc) => TaskCard(task: doc.data())).toList();
+          }
+
           return Column(
             children: tasks,
           );

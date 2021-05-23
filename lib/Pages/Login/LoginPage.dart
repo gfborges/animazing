@@ -1,7 +1,7 @@
 import 'package:animazing/Pages/Login/components/Authentication.dart';
 import 'package:animazing/Pages/Login/components/SignInWithGoogleButton.dart';
 import 'package:animazing/Pages/Login/components/CreateAccountButton.dart';
-import 'package:animazing/Services/UserService.dart';
+import 'package:animazing/Services/OwnerService.dart';
 import 'package:animazing/widgets/ScreenTitle.dart';
 import 'package:flutter/material.dart';
 
@@ -60,7 +60,7 @@ class LoginPage extends StatelessWidget {
                         return Column(
                           children: [
                             SignInWithGoogleButton(),
-                            CreateAccountButton(),
+                            //CreateAccountButton(),
                           ],
                         );
                       }

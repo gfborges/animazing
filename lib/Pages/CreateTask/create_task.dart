@@ -39,6 +39,7 @@ class _CreateTaskState extends State<CreateTask> {
 
   _CreateTaskState() {
     this.currentOwner = Store.memory["currentOwner"];
+    this.taskBuilder.setOwner(this.currentOwner.id);
     this.taskService = TaskService();
   }
 
@@ -130,7 +131,6 @@ class _CreateTaskState extends State<CreateTask> {
                 ),
                 onChanged:(String title) {
                   taskBuilder.setName(title);
-                  print(title);
                 },
               ),
             ),
@@ -233,8 +233,9 @@ class _CreateTaskState extends State<CreateTask> {
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(20.0)),
                 onPressed: () {
-                  _formKey.currentState.validate();
-                  taskService.save(taskBuilder.get());
+                  if(_formKey.currentState.validate()) {
+                    taskService.save(taskBuilder.get());
+                  }
                 },
               ),
             ),

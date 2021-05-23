@@ -1,17 +1,33 @@
 import 'package:animazing/Models/Owner.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class OwnerRepository {
-  List<Owner> _users;
-  static OwnerRepository _taskRepository;
+  CollectionReference<Owner> collection;
+  static OwnerRepository _repository;
 
   OwnerRepository._() {
-    _users = <Owner>[];
+    collection =
+        FirebaseFirestore.instance.collection('owner').withConverter<Owner>(
+              fromFirestore: (snapshots, _) => Owner.fromJson(snapshots.data()),
+              toFirestore: (owner, _) => owner.toJson(),
+            );
   }
 
   static OwnerRepository get() {
-    if(OwnerRepository._taskRepository == null) {
-      OwnerRepository._taskRepository = OwnerRepository._();
+    if (OwnerRepository._repository == null) {
+      OwnerRepository._repository = OwnerRepository._();
     }
-    return OwnerRepository._taskRepository;
+    return OwnerRepository._repository;
+  }
+
+  Future<void> save(Owner owner) async {
+    var exists = await hasOwner(owner);
+    if (!exists) {
+      collection.doc(owner.id).set(owner);
+    }
+  }
+
+  Future<bool> hasOwner(Owner owner) async {
+    return (await collection.doc(owner.id).get()).exists;
   }
 }

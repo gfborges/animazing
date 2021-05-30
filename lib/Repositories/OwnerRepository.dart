@@ -1,4 +1,6 @@
 import 'package:animazing/Models/Owner.dart';
+import 'package:animazing/Models/Pet.dart';
+import 'package:animazing/Store/Store.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class OwnerRepository {
@@ -25,6 +27,15 @@ class OwnerRepository {
     if (!exists) {
       collection.doc(owner.id).set(owner);
     }
+  }
+
+  Future<void> addPet(Pet pet) async {
+    Owner currentOwner = Store.memory["currentOwner"];
+    List<Object> pets = [pet.toJson()];
+
+    collection.doc(currentOwner.id).update({
+      "pets": FieldValue.arrayUnion(pets)
+    });
   }
 
   Future<bool> hasOwner(Owner owner) async {

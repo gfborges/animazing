@@ -6,4 +6,12 @@ class Pet {
   String origin;
 
   Pet({ this.name, this.type, this.origin});
+
+  Map<String, Object> toJson() {
+    return <String, Object>{
+      "name": name,
+      "type": type.toString(),
+      "origin": origin,
+    };
+  }
 }

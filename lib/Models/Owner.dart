@@ -1,6 +1,8 @@
 import 'package:animazing/Models/Pet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'Pets.dart';
+
 class Owner {
   String email;
   String name;
@@ -8,7 +10,7 @@ class Owner {
   String id;
   List<Pet> pets;
 
-  Owner({ this.email, this.name, this.photoURL}) {
+  Owner({this.email, this.name, this.photoURL}) {
     pets = <Pet>[];
   }
 
@@ -17,21 +19,35 @@ class Owner {
   }
 
   static Owner create(User user) {
-    Owner owner = Owner(name: user.displayName, email: user.email, photoURL:user.photoURL);
+    Owner owner = Owner(
+        name: user.displayName, email: user.email, photoURL: user.photoURL);
     owner.id = FirebaseAuth.instance.currentUser.uid;
 
     return owner;
   }
 
   static fromJson(Map<String, dynamic> json) {
-    Owner owner = Owner(name: json["name"], email: json["email"], photoURL: json["photoURL"]);
-    owner.pets = json["pets"];
+    print(json);
+    Owner owner = Owner(
+      name: json["name"], //
+      email: json["email"],
+      photoURL: json["photoURL"],
+    );
+
+    owner.pets = (json["pets"] as List)
+        .map((pet) => Pet(
+            name: pet["name"], //
+            origin: pet["origin"],
+            type: Pets.values.firstWhere(
+                (e) => e.toString() == 'Pets.' + pet["type"].toString())))
+        .toList();
+
     owner.id = json["id"];
     return owner;
   }
 
   Map<String, Object> toJson() {
-   return <String, Object>{
+    return <String, Object>{
       "id": id,
       "name": name,
       "email": email,

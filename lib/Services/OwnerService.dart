@@ -24,4 +24,9 @@ class OwnerService {
 
     this.ownerRepository.addPet(pet);
   }
+
+  Future<Owner> getOwner(String id) async {
+    var owner = (await this.ownerRepository.getOwner(id).single).data();
+    return owner;
+  }
 }

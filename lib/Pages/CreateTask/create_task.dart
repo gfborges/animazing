@@ -29,7 +29,7 @@ class _CreateTaskState extends State<CreateTask> {
   String chosenFreq;
   List frequencies = Frequency.values.map((e) => e.toLabel()).toList();
   String petChoose;
-  List listItemPet = ["Galileu", "King Kong", "Rex"];
+  List<String> listItemPet;
 
   //Time picker
   void initState() {
@@ -41,6 +41,7 @@ class _CreateTaskState extends State<CreateTask> {
     this.currentOwner = Store.memory["currentOwner"];
     this.taskBuilder.setOwner(this.currentOwner.id);
     this.taskService = TaskService();
+    this.listItemPet = this.currentOwner.pets.map((pet) => pet.name).toList();
   }
 
   Future<Null> selectTime(BuildContext context) async {

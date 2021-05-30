@@ -29,6 +29,10 @@ class OwnerRepository {
     }
   }
 
+  Stream<DocumentSnapshot<Owner>> getOwner(String id) {
+    return collection.doc(id).get().asStream();
+  }
+
   Future<void> addPet(Pet pet) async {
     Owner currentOwner = Store.memory["currentOwner"];
     List<Object> pets = [pet.toJson()];
@@ -41,4 +45,6 @@ class OwnerRepository {
   Future<bool> hasOwner(Owner owner) async {
     return (await collection.doc(owner.id).get()).exists;
   }
+
+
 }

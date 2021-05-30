@@ -16,10 +16,12 @@ class Authentication {
   static Future<bool> authenticate({BuildContext context}) async {
     var firebaseUser = await _signInWithGoogle(context: context);
     if(firebaseUser != null) {
-      var owner = Owner.create(firebaseUser);
-      await OwnerService.get().save(owner);
+      Owner owner = await OwnerService.get().getOwner(firebaseUser.uid);
+      if(owner == null) {
+        owner = Owner.create(firebaseUser);
+        await OwnerService.get().save(owner);
+      }
       Store.memory["currentOwner"] = owner;
-
       return true;
     }
 

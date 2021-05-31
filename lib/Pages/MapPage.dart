@@ -1,6 +1,9 @@
+import 'package:animazing/Services/AppBlocs.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:provider/provider.dart';
 
 class MapsPage extends StatefulWidget {
   @override
@@ -8,6 +11,7 @@ class MapsPage extends StatefulWidget {
 }
 
 class _MapsPageState extends State<MapsPage> {
+  
   // TODO: usar Places API
   GoogleMapController googleMapsController;
   LatLng initialcameraposition = LatLng(-1.4437121, -48.4630365);
@@ -27,19 +31,27 @@ class _MapsPageState extends State<MapsPage> {
   
   @override
   Widget build(BuildContext context) {
-    return Container( 
-      height: 500,
-      width: 500,
-      child: Center(
+    final appBloc = Provider.of<ApplicationBloc>(context);
+    return Scaffold( 
+      body: (appBloc.currentLocation == null)
+      ? Center (
+        child: CircularProgressIndicator(), 
+      )
+      : ListView (
+        children: [
+        Container (
+        height: 300,
+        width: 500,
         child: GoogleMap(/*
           initialCameraPosition: CameraPosition(
             target: LatLng(-1.4437121, -48.4630365),
             zoom: 11.0,*/
-            initialCameraPosition: CameraPosition(target: initialcameraposition),
+            initialCameraPosition: CameraPosition(target: LatLng(appBloc.currentLocation.latitude, appBloc.currentLocation.longitude), zoom:11.0,),
             mapType: MapType.normal,
-            onMapCreated: _onMapCreated,
-            myLocationEnabled: true
+            myLocationEnabled: true,
           ),
+        ),
+        ],
         ),
       );
   }

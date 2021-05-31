@@ -15,9 +15,9 @@ class Authentication {
 
   static Future<bool> authenticate({BuildContext context}) async {
     var firebaseUser = await _signInWithGoogle(context: context);
-    if(firebaseUser != null) {
+    if (firebaseUser != null) {
       Owner owner = await OwnerService.get().getOwner(firebaseUser.uid);
-      if(owner == null) {
+      if (owner == null) {
         owner = Owner.create(firebaseUser);
         await OwnerService.get().save(owner);
       }

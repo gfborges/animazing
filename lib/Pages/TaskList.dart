@@ -2,17 +2,25 @@ import 'package:animazing/Models/Owner.dart';
 import 'package:animazing/Models/Task.dart';
 import 'package:animazing/Services/TaskService.dart';
 import 'package:animazing/Store/Store.dart';
+import 'package:animazing/widgets/DismissibleWidget.dart';
 import 'package:animazing/widgets/ScreenTitle.dart';
 import 'package:animazing/widgets/TaskCard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class TaskList extends StatelessWidget {
+class TaskList extends StatefulWidget {
+  @override
+  _TaskListState createState() => _TaskListState();
+}
+
+class _TaskListState extends State<TaskList> {
   final TaskService taskService = TaskService();
+  List<Task> tasks;
   Owner owner;
 
-  TaskList({Key key}) {
+  _TaskListState({Key key}) {
     this.owner = Store.memory["currentOwner"];
+    this.tasks = [];
   }
 
   @override
@@ -61,17 +69,37 @@ class TaskList extends StatelessWidget {
       child: StreamBuilder<QuerySnapshot<Task>>(
         stream: _tasks,
         builder: (BuildContext context, snapshot) {
-          List<TaskCard> tasks = [];
           if (snapshot.hasData) {
             final data = snapshot.requireData;
-            tasks = data.docs.map((doc) => TaskCard(task: doc.data())).toList();
+            tasks = data.docs.map((doc) {
+              return doc.data();
+            }).toList();
           }
-
-          return Column(
-            children: tasks,
+          return Expanded(
+            child: Container(
+              height: 200,
+              child: ListView.separated(
+                scrollDirection: Axis.vertical,
+                itemCount: tasks.length,
+                separatorBuilder: (context, index) => Divider(),
+                itemBuilder: (context, index) {
+                  return buildTaskCard(context, index);
+                },
+              ),
+            ),
           );
         },
       ),
+    );
+  }
+
+  Widget buildTaskCard(BuildContext context, int index) {
+    return DismissibleWidget(
+      child: TaskCard(task: tasks[index]),
+      item: tasks[index],
+      onDissmissed: (direction) {
+        print(index);
+      },
     );
   }
 }

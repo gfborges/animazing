@@ -39,7 +39,7 @@ class Owner {
             name: pet["name"], //
             origin: pet["origin"],
             type: Pets.values.firstWhere(
-                (e) => e.toString() == 'Pets.' + pet["type"].toString())))
+                (e) => e.toString() == pet["type"].toString())))
         .toList();
 
     owner.id = json["id"];

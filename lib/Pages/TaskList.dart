@@ -43,7 +43,6 @@ class _TaskListState extends State<TaskList> {
         child: Column(
           children: [
             ScreenTitle(text: "Olá, ${owner.name.split(" ")[0]}!"),
-            ScreenSubTitle(text: "Você tem 2 tarefas para concluir hoje!"),
           ],
         ),
         margin: EdgeInsets.only(top: 30),
@@ -75,9 +74,8 @@ class _TaskListState extends State<TaskList> {
               return doc.data();
             }).toList();
           }
-          return Expanded(
-            child: Container(
-              height: 200,
+          return Container(
+              height: 540,
               child: ListView.separated(
                 scrollDirection: Axis.vertical,
                 itemCount: tasks.length,
@@ -86,8 +84,7 @@ class _TaskListState extends State<TaskList> {
                   return buildTaskCard(context, index);
                 },
               ),
-            ),
-          );
+            );
         },
       ),
     );

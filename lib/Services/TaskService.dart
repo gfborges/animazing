@@ -13,8 +13,13 @@ class TaskService {
     return taskRepository.getMany(owner);
   }
 
-  save(Task task) {
+  save(Task task)  async {
     return taskRepository.save(task);
+  }
+
+  toggle(Task task) {
+      task.toggle();
+    return taskRepository.toggle(task);
   }
 
   delete(Task task) {

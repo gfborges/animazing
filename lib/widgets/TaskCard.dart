@@ -1,4 +1,5 @@
 import 'package:animazing/Models/Task.dart';
+import 'package:animazing/Services/TaskService.dart';
 import 'package:flutter/material.dart';
 
 class TaskCard extends StatefulWidget {
@@ -11,6 +12,7 @@ class TaskCard extends StatefulWidget {
 }
 
 class _TaskCardState extends State<TaskCard> {
+  TaskService taskService =  TaskService();
   final Task task;
   final Color _color = Colors.white;
 
@@ -18,7 +20,7 @@ class _TaskCardState extends State<TaskCard> {
 
   void _onTap() {
     setState(() {
-      task.toggle();
+      taskService.toggle(task);
     });
   }
 
@@ -87,7 +89,7 @@ class _TaskCardState extends State<TaskCard> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(Icons.watch_later_outlined),
-        Text(task.time),
+        Text(task.formatedTime()),
       ],
     );
   }

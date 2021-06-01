@@ -1,4 +1,5 @@
 import 'package:animazing/Models/Owner.dart';
+import 'package:animazing/Models/Task.dart';
 import 'package:animazing/Models/TaskBuilder.dart';
 import 'package:animazing/Models/Frequency.dart';
 import 'package:animazing/Services/TaskService.dart';
@@ -193,12 +194,6 @@ class _CreateTaskState extends State<CreateTask> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                validator: (String value) {
-                  if (value.isEmpty) {
-                    return 'Data cannot be empty';
-                  }
-                  return null;
-                },
                 controller: dateCtl,
                 onTap: () {
                   selectDate(context);
@@ -241,7 +236,10 @@ class _CreateTaskState extends State<CreateTask> {
                     borderRadius: new BorderRadius.circular(20.0)),
                 onPressed: () async  {
                   if (_formKey.currentState.validate()) {
-                    await taskService.save(taskBuilder.get());
+                    taskBuilder.setDate(dateCtl.text);
+                    Task task = taskBuilder.get();
+                    await taskService.save(task);
+                    
                     afterSave();
                   }
                 },

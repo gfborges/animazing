@@ -16,14 +16,17 @@ class Task {
 
   bool isComplete = false;
 
-  Task();
+  Task(){
+    isComplete = false;
+    date = "";
+  }
 
   void toggle() {
     this.isComplete = !this.isComplete;
   }
 
   String formatedTime() {
-    if(frequency == Frequency.unique.toLabel()) {
+    if(frequency != Frequency.daily.toLabel()) {
       return  date + " " + time;
     } 
     return time;

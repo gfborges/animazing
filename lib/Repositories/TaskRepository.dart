@@ -33,6 +33,14 @@ class TaskRepository {
       .catchError((error) => print("Failed to add user: $error"));
   }
 
+  void delete(Task task) {
+    print(task.id);
+    collection.where("name", isEqualTo: task.name).get()
+      .then((value) =>
+        value.docs.forEach(
+          (doc) => collection.doc(doc.id).delete()));
+  }
+
   Stream<QuerySnapshot<Task>> getMany(Owner owner) {
     return collection
       .where("ownerId", isEqualTo: owner.id)

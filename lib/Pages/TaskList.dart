@@ -98,7 +98,9 @@ class _TaskListState extends State<TaskList> {
       child: TaskCard(task: tasks[index]),
       item: tasks[index],
       onDissmissed: (direction) {
-        print(index);
+        print(tasks[index].name);
+        taskService.delete(tasks[index]);
+        tasks.removeAt(index);
       },
     );
   }

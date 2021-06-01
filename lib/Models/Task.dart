@@ -10,6 +10,7 @@ class Task {
   String time;
   String frequency;
   String ownerId;
+  String _id;
 
 
   bool isComplete = false;
@@ -33,7 +34,13 @@ class Task {
         .setPet(json["pet"])
         .setOwner(json["email"])
         .get();
+    task._id = json["id"];
+    
     return task;
+  }
+
+  get id {
+    return _id;
   }
 
   Map<String, Object> toJson() {
@@ -44,6 +51,7 @@ class Task {
     json["time"] = time;
     json["frequency"] = frequency;
     json["ownerId"] = ownerId;
+    json["id"] = _id;
     return json;
   }
 }

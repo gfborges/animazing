@@ -16,4 +16,8 @@ class TaskService {
   save(Task task) {
     return taskRepository.save(task);
   }
+
+  delete(Task task) {
+    return taskRepository.delete(task);
+  }
 }

@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TaskRepository {
   CollectionReference<Task> collection;
-  List<Task> _tasks;
   OwnerService userService = OwnerService.get();
   static TaskRepository _taskRepository;
 
@@ -32,6 +31,22 @@ class TaskRepository {
       .then((value) => print("Task Added"))
       .catchError((error) => print("Failed to add user: $error"));
   }
+
+  void delete(Task task) {
+    print(task.id);
+    collection.where("name", isEqualTo: task.name).get()
+      .then((value) =>
+        value.docs.forEach(
+          (doc) => collection.doc(doc.id).delete()));
+  }
+
+  void toggle(Task task) {
+    collection.where("name", isEqualTo: task.name).get()
+      .then((snapshot) {
+        snapshot.docs.forEach((doc) => collection.doc(doc.id).set(task));
+      });
+  }
+
 
   Stream<QuerySnapshot<Task>> getMany(Owner owner) {
     return collection

@@ -14,4 +14,13 @@ class Pet {
       "origin": origin,
     };
   }
+
+  static Pet fromJson(Map<String, Object> json) {
+    return Pet(
+      name: json["name"],
+      origin: json["origin"],
+      type: PetsExtenstion.parse(json["type"])
+    );
+
+  }
 }

@@ -34,13 +34,10 @@ class Owner {
       photoURL: json["photoURL"],
     );
 
-    owner.pets = (json["pets"] as List)
-        .map((pet) => Pet(
-            name: pet["name"], //
-            origin: pet["origin"],
-            type: Pets.values.firstWhere(
-                (e) => e.toString() == pet["type"].toString())))
-        .toList();
+    owner.pets = (json["pets"] as List).map((pet) {
+      print(pet);
+      return Pet.fromJson(pet);
+    }).toList();
 
     owner.id = json["id"];
     return owner;

@@ -27,7 +27,7 @@ class TaskBuilder {
     return this;
   }
 
-  TaskBuilder setDateTime(String time) {
+  TaskBuilder setTime(String time) {
     this._task.time = time;
     return this;
   }
@@ -41,7 +41,16 @@ class TaskBuilder {
     this._task.ownerId = ownerId;
     return this;
   }
+
+  TaskBuilder setDate(String date) {
+    this._task.date = date;
+    return this;
+  }
   
+   TaskBuilder setIsComplete(bool isComplete) {
+    this._task.isComplete = isComplete;
+    return this;
+  }
   
   Task get() {
     Task task = this._task;

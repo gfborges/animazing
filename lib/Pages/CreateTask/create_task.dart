@@ -1,4 +1,5 @@
 import 'package:animazing/Models/Owner.dart';
+import 'package:animazing/Models/Task.dart';
 import 'package:animazing/Models/TaskBuilder.dart';
 import 'package:animazing/Models/Frequency.dart';
 import 'package:animazing/Services/TaskService.dart';
@@ -13,12 +14,14 @@ class CreateTask extends StatefulWidget {
     return _CreateTaskState();
   }
 }
-// TODO: fazer a tela ficar responsiva 
+
+// TODO: fazer a tela ficar responsiva
 class _CreateTaskState extends State<CreateTask> {
   final _formKey = GlobalKey<FormState>();
   final TaskBuilder taskBuilder = TaskBuilder();
   TextEditingController timeCtl = TextEditingController();
   TextEditingController dateCtl = TextEditingController();
+  TextEditingController titleCtl = TextEditingController();
   var moneyController = new MoneyMaskedTextController(leftSymbol: 'R\$ ');
   TimeOfDay time;
   TimeOfDay picked;
@@ -50,7 +53,7 @@ class _CreateTaskState extends State<CreateTask> {
     if (picked != null) {
       setState(() {
         time = picked;
-        taskBuilder.setDateTime(time.format(context));
+        taskBuilder.setTime(time.format(context));
         timeCtl.text = time.format(context);
       });
     }
@@ -84,7 +87,9 @@ class _CreateTaskState extends State<CreateTask> {
         child: Column(
           children: <Widget>[
             Center(child: ScreenTitle(text: 'Tarefas')), // Título da tela
-            Center(child: ScreenSubTitle(text: 'Agende uma tarefa para ser lembrado')), // Subtítulo
+            Center(
+                child: ScreenSubTitle(
+                    text: 'Agende uma tarefa para ser lembrado')), // Subtítulo
             Center(child: Image.asset('images/notebook.png')),
             Padding(
               padding: const EdgeInsets.all(10.0),
@@ -125,18 +130,19 @@ class _CreateTaskState extends State<CreateTask> {
                   }
                   return null;
                 },
+                controller: titleCtl,
                 decoration: InputDecoration(
-                    labelText: 'Título da tarefa',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0)),
+                  labelText: 'Título da tarefa',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0)),
                 ),
-                onChanged:(String title) {
+                onChanged: (String title) {
                   taskBuilder.setName(title);
                 },
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0), 
+              padding: const EdgeInsets.all(8.0),
               child: TextFormField(
                 validator: (String value) {
                   if (value.isEmpty) {
@@ -188,12 +194,6 @@ class _CreateTaskState extends State<CreateTask> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                validator: (String value) {
-                  if (value.isEmpty) {
-                    return 'Data cannot be empty';
-                  }
-                  return null;
-                },
                 controller: dateCtl,
                 onTap: () {
                   selectDate(context);
@@ -203,6 +203,7 @@ class _CreateTaskState extends State<CreateTask> {
                     hintText: 'DD/MM/YYYY',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0))),
+                    onChanged: (newDate) => taskBuilder.setDate(dateCtl.text),
               ),
             ),
             Padding(
@@ -233,9 +234,13 @@ class _CreateTaskState extends State<CreateTask> {
                 color: Color(0xffef8766),
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(20.0)),
-                onPressed: () {
-                  if(_formKey.currentState.validate()) {
-                    taskService.save(taskBuilder.get());
+                onPressed: () async  {
+                  if (_formKey.currentState.validate()) {
+                    taskBuilder.setDate(dateCtl.text);
+                    Task task = taskBuilder.get();
+                    await taskService.save(task);
+                    
+                    afterSave();
                   }
                 },
               ),
@@ -244,5 +249,32 @@ class _CreateTaskState extends State<CreateTask> {
         ),
       ),
     );
+  }
+
+  void afterSave() {
+    clear();
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Text('Tarefa cadastrada com sucesso!'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pushNamed("/app");
+                },
+                child: Text('Continuar'),
+              ),
+            ],
+          );
+        });
+  }
+
+  void clear() {
+    timeCtl.clear();
+    dateCtl.clear();
+    moneyController.clear();
+    titleCtl.clear();
   }
 }

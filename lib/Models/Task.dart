@@ -1,3 +1,4 @@
+import 'package:animazing/Models/Frequency.dart';
 import 'package:animazing/Models/TaskBuilder.dart';
 
 import 'package:intl/intl.dart';
@@ -8,19 +9,26 @@ class Task {
   double cost;
   String pet;
   String time;
+  String date;
   String frequency;
   String ownerId;
-
+  String _id;
 
   bool isComplete = false;
 
-  Task();
+  Task(){
+    isComplete = false;
+    date = "";
+  }
 
   void toggle() {
     this.isComplete = !this.isComplete;
   }
 
   String formatedTime() {
+    if(frequency != Frequency.daily.toLabel()) {
+      return  date + " " + time;
+    } 
     return time;
   }
 
@@ -28,12 +36,20 @@ class Task {
     Task task = taskBuilder
         .setName(json["name"])
         .setCost(json["cost"])
-        .setDateTime(json["time"])
+        .setTime(json["time"])
+        .setDate(json["date"])
         .setFrequency(json["frequency"])
         .setPet(json["pet"])
-        .setOwner(json["email"])
+        .setOwner(json["ownerId"])
+        .setIsComplete(json["isComplete"])
         .get();
+    task._id = json["id"];
+    
     return task;
+  }
+
+  get id {
+    return _id;
   }
 
   Map<String, Object> toJson() {
@@ -44,6 +60,10 @@ class Task {
     json["time"] = time;
     json["frequency"] = frequency;
     json["ownerId"] = ownerId;
+    json["date"] = date;
+    json["id"] = _id;
+    json["ownerId"] = ownerId;
+    json["isComplete"] = isComplete;
     return json;
   }
 }

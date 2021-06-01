@@ -1,8 +1,5 @@
 import 'package:animazing/Models/Pet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-import 'Pets.dart';
-
 class Owner {
   String email;
   String name;

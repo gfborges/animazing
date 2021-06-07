@@ -5,7 +5,6 @@ import 'package:animazing/Services/AppBlocs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
 class MapsPage extends StatefulWidget {
@@ -14,7 +13,6 @@ class MapsPage extends StatefulWidget {
 }
 
 class _MapsPageState extends State<MapsPage> {
-  
   Completer<GoogleMapController> _mapController = Completer();
   StreamSubscription locationSubscription;
   StreamSubscription boundsSubscription;
@@ -25,9 +23,9 @@ class _MapsPageState extends State<MapsPage> {
     final applicationBloc =
         Provider.of<ApplicationBloc>(context, listen: false);
 
-
     //Listen for selected Location
-    locationSubscription = applicationBloc.selectedLocation.stream.listen((place) {
+    locationSubscription =
+        applicationBloc.selectedLocation.stream.listen((place) {
       if (place != null) {
         _locationController.text = place.name;
         _goToPlace(place);
@@ -41,8 +39,6 @@ class _MapsPageState extends State<MapsPage> {
     });
     super.initState();
   }
-
-
 
   @override
   void dispose() {
@@ -145,7 +141,7 @@ class _MapsPageState extends State<MapsPage> {
                             label: Text('Pet Store'),
                             onSelected: (val) => applicationBloc
                                 .togglePlaceType('pet_store', val),
-                            selected: applicationBloc.placeType  =='pet_store',
+                            selected: applicationBloc.placeType == 'pet_store',
                             selectedColor: Colors.blue),
                       ],
                     ),

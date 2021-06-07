@@ -26,7 +26,7 @@ class ApplicationBloc with ChangeNotifier {
   Place selectedLocationStatic;
   String placeType;
   List<Place> placeResults;
-  List<Marker> markers = List<Marker>();
+  List<Marker> markers = [];
 
   ApplicationBloc() {
     setCurrentLocation();

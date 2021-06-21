@@ -27,6 +27,10 @@ class TaskBuilder {
     return this;
   }
 
+  TaskBuilder setCategory(String category) {
+    return this;
+  }
+
   TaskBuilder setTime(String time) {
     this._task.time = time;
     return this;

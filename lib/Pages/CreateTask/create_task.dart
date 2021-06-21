@@ -2,6 +2,7 @@ import 'package:animazing/Models/Owner.dart';
 import 'package:animazing/Models/Task.dart';
 import 'package:animazing/Models/TaskBuilder.dart';
 import 'package:animazing/Models/Frequency.dart';
+import 'package:animazing/Models/TaskCategory.dart';
 import 'package:animazing/Services/TaskService.dart';
 import 'package:animazing/Store/Store.dart';
 import 'package:animazing/widgets/ScreenTitle.dart';
@@ -33,6 +34,8 @@ class _CreateTaskState extends State<CreateTask> {
   List frequencies = Frequency.values.map((e) => e.toLabel()).toList();
   String petChoose;
   List<String> listItemPet;
+  List<String> categories;
+  String choosenCat;
 
   //Time picker
   void initState() {
@@ -45,6 +48,7 @@ class _CreateTaskState extends State<CreateTask> {
     this.taskBuilder.setOwner(this.currentOwner.id);
     this.taskService = TaskService();
     this.listItemPet = this.currentOwner.pets.map((pet) => pet.name).toList();
+    this.categories = TaskCategory.values.map((e) => e.toLabel()).toList();
   }
 
   Future<Null> selectTime(BuildContext context) async {
@@ -139,6 +143,36 @@ class _CreateTaskState extends State<CreateTask> {
                 onChanged: (String title) {
                   taskBuilder.setName(title);
                 },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                padding: EdgeInsets.only(
+                    left: 16.0, right: 16.0, top: 7.0, bottom: 7.0),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey, width: 1),
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                child: DropdownButton(
+                  hint: Text('Categoria'),
+                  value: choosenCat,
+                  icon: Icon(Icons.arrow_drop_down_circle),
+                  isExpanded: true,
+                  underline: SizedBox(),
+                  onChanged: (newCat) {
+                    setState(() {
+                      taskBuilder.setCategory(newCat);
+                      choosenCat = newCat;
+                    });
+                  },
+                  items: listItemPet.map((valueItem) {
+                    return DropdownMenuItem(
+                      value: valueItem,
+                      child: Text(valueItem),
+                    );
+                  }).toList(),
+                ),
               ),
             ),
             Padding(

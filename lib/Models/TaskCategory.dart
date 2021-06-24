@@ -1,14 +1,20 @@
 enum TaskCategory {
   health,
+  hygiene,
+  food,
   entertainment
 }
 
 extension ParseCateotryToString on TaskCategory {
   String toLabel() {
     switch(this) {
-      case TaskCategory.health :
+      case TaskCategory.health:
         return "Saúde";
-      case TaskCategory.entertainment :
+      case TaskCategory.hygiene:
+        return "Higiene";
+      case TaskCategory.food:
+        return "Comida";
+      case TaskCategory.entertainment:
         return "Entreterimento";
       default:
         return "Não reconhecido";

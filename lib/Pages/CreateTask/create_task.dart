@@ -34,7 +34,13 @@ class _CreateTaskState extends State<CreateTask> {
   List frequencies = Frequency.values.map((e) => e.toLabel()).toList();
   String petChoose;
   List<String> listItemPet;
-  List<String> categories;
+  List<String> categories = [
+    "Entreterimento",
+    "Comida",
+    "Saúde",
+    "Higiene",
+    "Outro"
+  ];
   String choosenCat;
 
   //Time picker
@@ -166,7 +172,7 @@ class _CreateTaskState extends State<CreateTask> {
                       choosenCat = newCat;
                     });
                   },
-                  items: listItemPet.map((valueItem) {
+                  items: categories.map((valueItem) {
                     return DropdownMenuItem(
                       value: valueItem,
                       child: Text(valueItem),

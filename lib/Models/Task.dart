@@ -13,6 +13,7 @@ class Task {
   String frequency;
   String ownerId;
   String _id;
+  String category;
 
   bool isComplete = false;
 

@@ -43,6 +43,7 @@ class Task {
         .setPet(json["pet"])
         .setOwner(json["ownerId"])
         .setIsComplete(json["isComplete"])
+        .setCategory(json["category"])
         .get();
     task._id = json["id"];
     
@@ -65,6 +66,7 @@ class Task {
     json["id"] = _id;
     json["ownerId"] = ownerId;
     json["isComplete"] = isComplete;
+    json["category"] = category;
     return json;
   }
 }

@@ -33,7 +33,6 @@ class SpendingCard extends StatelessWidget {
 // ignore: must_be_immutable
 class SpendingList extends StatefulWidget {
   List<SpendingCardInfo> list;
-  List<SpendingCardInfo> filteredList;
 
   SpendingList({this.list});
 

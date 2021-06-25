@@ -12,7 +12,7 @@ class TaskService {
   getAll(Owner owner) {
     return taskRepository.getMany(owner);
   }
-
+  
   save(Task task)  async {
     return taskRepository.save(task);
   }

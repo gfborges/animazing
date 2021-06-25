@@ -28,6 +28,7 @@ class TaskBuilder {
   }
 
   TaskBuilder setCategory(String category) {
+    this._task.category = category;
     return this;
   }
 

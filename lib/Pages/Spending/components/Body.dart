@@ -14,6 +14,13 @@ class Body extends StatelessWidget {
     Key key,
   }) : super(key: key);
   List<dynamic> tasks;
+  List categories = [
+    "Entreterimento",
+    "Comida",
+    "Saúde",
+    "Higiene",
+    "Outro"
+  ];
 
   Owner owner = Store.memory["currentOwner"];
   TaskService  taskService = TaskService();
@@ -56,14 +63,17 @@ class Body extends StatelessWidget {
   Map getCostPerPet(List<dynamic> tasks){
     Map costPerPet = Map();
     for (var task in tasks) { 
-      if(costPerPet.containsKey(task.pet)) {
-        if(task.cost != null) {
-          costPerPet[task.pet] += task.cost;
-        } else  {
-          costPerPet[task.pet] = 0;
-        }
-      } else  {
-        costPerPet[task.pet] = task.cost;
+      if(!costPerPet.containsKey(task.pet)) {
+        costPerPet[task.pet] = categories.map((category) => 0).toList();
+        
+      } 
+      if(task.cost != null) {
+        costPerPet[task.pet] = costPerPet[task.pet].asMap().map((i,cost) {
+          if(categories.indexOf(task.category) == i) {
+            return MapEntry(i, cost + task.cost);
+          }
+          return MapEntry(i, cost);
+        }).values.toList();
       }
     }
     return costPerPet;

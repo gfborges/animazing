@@ -3,12 +3,20 @@ import 'package:animazing/Models/SpendingCardInfo.dart';
 
 class SpendingCard extends StatelessWidget {
   final SpendingCardInfo cardInfo;
+  final List<Icon> catetoryIcons = [
+    Icon(Icons.beach_access_rounded),
+    Icon(Icons.food_bank_rounded),
+    Icon(Icons.local_hospital_rounded),
+    Icon(Icons.bathtub_rounded),
+    Icon(Icons.more_horiz),
+  ];
   SpendingCard({this.cardInfo});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Row(
+        
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
@@ -19,10 +27,15 @@ class SpendingCard extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               )
             ],
-          ),
-          Text(
-            'R\$ ' + cardInfo.cost.toString(),
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),  
+          Column(
+            children: cardInfo.cost.asMap().map((i,e) => MapEntry(i, Row(children: [
+              catetoryIcons.elementAt(i),
+              Text(
+                'R\$ ' + e.toString(),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              )],))
+            ).values.toList(),
           )
         ],
       ),
@@ -53,7 +66,7 @@ class _SpendingListState extends State<SpendingList> {
                 .map(
                   (e) => Container(
                     child: SpendingCard(cardInfo: e),
-                    height: 55,
+                    height: 150,
                     width: size.width,
                     padding: EdgeInsets.all(10),
                     margin: EdgeInsets.only(top: 4, bottom: 10),
@@ -72,29 +85,6 @@ class _SpendingListState extends State<SpendingList> {
                 )
                 .toList(),
           ),
-          Container(
-            padding: EdgeInsets.only(left: 50, right: 50),
-            height: 55,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Total',
-                    style: TextStyle(fontSize: 20, color: Colors.white)),
-                Text(
-                    'R\$ ' +
-                        widget.list
-                            .fold(0.0, (sum, item) => sum + item.cost)
-                            .toStringAsFixed(2),
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ))
-              ],
-            ),
-            decoration: BoxDecoration(
-                color: Color(0xff4a4356),
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-          )
         ],
       ),
     );

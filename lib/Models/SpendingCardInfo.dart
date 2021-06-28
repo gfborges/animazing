@@ -1,7 +1,7 @@
 import 'package:animazing/Models/Pet.dart';
 
 class SpendingCardInfo {
-  final double cost;
+  final List<dynamic> cost;
   final Pet pet;
   final DateTime time;
 
